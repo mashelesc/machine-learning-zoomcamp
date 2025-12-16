@@ -1,0 +1,12 @@
+[project]
+name = "midterm"
+version = "0.1.0"
+description = "a model that can be used to predict heart failure in patients."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.121.2",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.7.2",
+    "xgboost>=3.1.1",
+]
