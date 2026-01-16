@@ -80,7 +80,7 @@ pip install fastapi imbalanced-learn matplotlib numpy pandas requests scikit-lea
 
 * download the lung cancer dataset from kaggle:
 ```bash
-curl 
+curl -O "https://www.kaggle.com/datasets/mysarahmadbhat/lung-cancer"
 ```
 
 * run the **train.py** script, this will save the **model.bin** in the same folder.
