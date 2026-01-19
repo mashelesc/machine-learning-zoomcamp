@@ -7,9 +7,7 @@ from typing import Literal
 
 app = FastAPI(title = "lung-cancer-prediction")
 
-output_file = f'model.bin'
-
-with open(output_file, 'rb') as f_in:
+with open('model.bin', 'rb') as f_in:
     dictVectorizer, model, feature_matrix = pickle.load(f_in)
 
 class Patient(BaseModel):
