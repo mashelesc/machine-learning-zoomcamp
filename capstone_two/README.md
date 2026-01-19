@@ -32,7 +32,7 @@ In this part:
 
 ### 4. SPLITTING THE DATASET
 The dataset is split into 2 dataframes: **train_df**(80%) and **test_df**(20%) using scikit-learn's **train_test_split()**.
-* **stratity** is used to ensure that the proportions of classes in the target variable are preserved in the 2 new sets.
+* **stratify()** is used to ensure that the proportions of classes in the target variable are preserved in the 2 new sets.
   
 ### 5. FEATURE IMPORTANCE
 * check the proportions of classes in the target variable of the 2 sets.
