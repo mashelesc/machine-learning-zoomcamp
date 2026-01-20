@@ -11,7 +11,7 @@ with open('model.bin', 'rb') as f_in:
     dictVectorizer, model, feature_matrix = pickle.load(f_in)
 
 class Patient(BaseModel):
-   gender: Literal["no", "yes"]
+   gender: Literal["m", "f"]
    age: int = Field(..., ge = 0, le = 130)
    smoking: Literal["no", "yes"]
    yellow_fingers: Literal["no", "yes"]
