@@ -45,4 +45,4 @@ def predict(patient: Patient):
     }
 
 if __name__ == "__main__":
-  uvicorn.run(app, host = "localhost", port = 9696)
+  uvicorn.run(app, host = "localhost", port = 8000)

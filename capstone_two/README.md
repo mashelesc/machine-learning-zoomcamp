@@ -1,5 +1,7 @@
 ## LUNG CANCER PREDICTION IN PATIENTS
 ### 1. PROJECT DESCRIPTION
+This project trains and evaluates models in predicting lung cancer likelihood in patients using a lung cancer dataset.
+
 ### 2. DATASET
 The lung cancer dataset has 309 records, with 12 features. **age** is the only numerical variable in the dataset, the rest are categorical variables. Some features are features that indicate symptoms whilst some features are features that indicate behavioural traits of a patient.
 The features are:
@@ -90,13 +92,13 @@ python3 train.py
 
 * to run the web service:
 ```bash
-fastapi dev predict.py --port 9696
+fastapi dev predict.py --port 8000
 ```
 
 OR
 
 ```bash
-uvicorn predict:app --host 0.0.0.0 --port 9696 --reload
+uvicorn predict:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Then open the **docs** function and send a request to test the model:
