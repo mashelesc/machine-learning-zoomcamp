@@ -130,4 +130,20 @@ Output should be:
 }
 ```
 
-### 12. 
+### 12. RUN MODEL USING DOCKER
+```bash
+docker run --rm capstone_two
+```
+
+OR
+
+```bash
+docker run -p 8000:8000 capstone_two
+```
+
+* **capstone_two** is the name of the docker image.
+* this should return output that contains this line:
+
+```bash
+Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+```
