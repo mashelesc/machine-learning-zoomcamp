@@ -4,7 +4,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /capstone_two
 
-ENV PATH="/capstone/.venv/bin:$PATH"
+ENV PATH="/capstone_two/.venv/bin:$PATH"
 
 COPY "pyproject.toml" "uv.lock" ".python-version" "./"
 
