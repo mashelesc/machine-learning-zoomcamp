@@ -8,11 +8,13 @@ from typing import Literal
 app = FastAPI(title = "lung-cancer-prediction")
 
 with open('model.bin', 'rb') as f_in:
-    dictVectorizer, model, feature_matrix = pickle.load(f_in)
+    (model, dictVectorizer) = pickle.load(f_in)
+
+feature_matrix = dictVectorizer.feature_names_
 
 class Patient(BaseModel):
    gender: Literal["m", "f"]
-   age: int = Field(..., ge = 0, le = 130)
+   age: int = Field(..., ge = 0, le = 120)
    smoking: Literal["no", "yes"]
    yellow_fingers: Literal["no", "yes"]
    anxiety: Literal["no", "yes"]
@@ -27,21 +29,22 @@ class Patient(BaseModel):
    swallowing_difficulty: Literal["no", "yes"]
    chest_pain: Literal["no", "yes"]
 
-def predict_cancer(patient):
-   X_patient = dictVectorizer.transform(patient)
+def predict_cancer(patient_dict): 
+   X_patient = dictVectorizer.transform([patient_dict])
    dPatient = xgb.DMatrix(X_patient, feature_names = feature_matrix)
    
    prediction = model.predict(dPatient)
-   return float(prediction)
+   return float(prediction[0])
 
 @app.post("/predict", response_model = dict)
 def predict(patient: Patient):
-    lung_cancer_probability = predict_cancer(patient.model_dump())
-    lung_cancer = (lung_cancer_probability > 0.5)
+    patient_dict = patient.model_dump()
+    cancer_probability = predict_cancer(patient_dict)
+    cancer = (cancer_probability > 0.5)
 
     return {
-        "lung cancer probability": lung_cancer_probability,
-        "lung cancer": lung_cancer
+        "lung cancer probability": cancer_probability,
+        "lung cancer": cancer
     }
 
 if __name__ == "__main__":

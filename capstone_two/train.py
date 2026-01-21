@@ -29,7 +29,6 @@ warnings.filterwarnings("ignore", category = UserWarning)
 1. EXPLORATORY DATA AANALYSIS
 """
 df = pd.read_csv("lung_cancer.csv")
-output_file = f'model.bin'
 
 def data_preprocessing(df):
     # check for duplicated rows and drop them
@@ -448,14 +447,15 @@ def final_model(dTrain, dTest, pos_weight, y_test):
     model = xgb.train(xgb_params, dTrain, evals = [(dTrain, 'train'), (dTest, 'test')], num_boost_round = 7, verbose_eval = 5)
     
     y_prediction = model.predict(dTest)
-    return roc_auc_score(y_test, y_prediction)
+    return model, roc_auc_score(y_test, y_prediction)
 
-model = final_model(dTrain, dTest, pos_weight, y_test)
+model, roc = final_model(dTrain, dTest, pos_weight, y_test)
 
 """
 10. SAVE MODEL
 """
 
-with open(output_file, 'wb') as f_out:
-    pickle.dump((dictVectorizer, model, feature_matrix), f_out)
+with open('model.bin', 'wb') as f_out:
+    pickle.dump((model, dictVectorizer), f_out)
+    print(type(model))
     print("model successfully saved.")

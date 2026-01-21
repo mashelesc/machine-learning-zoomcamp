@@ -101,7 +101,7 @@ OR
 uvicorn predict:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Then open the **docs** function and send a request to test the model:
+Then open the API documentation and send a request to test the model:
 
 ```bash
 {
@@ -120,6 +120,13 @@ Then open the **docs** function and send a request to test the model:
   "shortness_of_breath": "yes",
   "swallowing_difficulty": "yes",
   "chest_pain": "yes"
+}
+```
+Output should be:
+```bash
+{
+  "lung cancer probability": 0.22855529189109802,
+  "lung cancer": false
 }
 ```
 
